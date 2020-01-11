@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,7 +35,7 @@ public class Frag1 extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerImageTextAdapter recyclerImageTextAdapter;
-    ArrayList<ListViewItem> list = new ArrayList<>();
+    ArrayList<ListViewItem> list = new ArrayList<>();    // 먹을 약 알람 리스트 데이터 저장
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -61,16 +62,30 @@ public class Frag1 extends Fragment {
        recyclerView.setAdapter(recyclerImageTextAdapter);
 
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.add);
+       TextView textView = (TextView) view.findViewById(R.id.calendar);
+
+        Bundle extra = this.getArguments(); //값 받아오기
+
+        if(extra !=null){
+            String name = extra.getString("name");
+            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
+
+        }
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {         //먹을약 생성
                 Intent intent = new Intent(getActivity(),AddMedicine.class);  //frgment에서는 this를 쓸수 없기 때문에
-                                                                               //Acitivity의 참조를 얻어오기 위해서 getActivity()를사용한다.
+                //Acitivity의 참조를 얻어오기 위해서 getActivity()를사용한다.
                 startActivity(intent);
 
             }
         });
+
+
+
+
+
 
       /*  Bundle args = getArguments();
 

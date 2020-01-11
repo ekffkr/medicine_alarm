@@ -24,6 +24,7 @@
             android:layout_weight="0.8"
             android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:id="@+id/calendar"
             android:textSize="15dp"
             android:text="날짜"></TextView>
         <ImageButton

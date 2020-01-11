@@ -127,21 +127,12 @@
             android:id="@+id/togetheradd"></Button>
 
 
-
-
-
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="같이 복용할 약 리스트"
-        android:textSize="20dp"
-        android:id="@+id/together"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="7dp"
-        android:textStyle="bold"></TextView>
-
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/diffList"></ListView>
 
 
 
