@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView imageView = (ImageView)findViewById(R.id.image2);
-        button = findViewById(R.id.stbtn);
+
 
 
 

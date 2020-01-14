@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,7 +70,7 @@ public class Frag1 extends Fragment {
         if(extra !=null){
             String name = extra.getString("name");
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
-
+            Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
         }
 
         imageButton.setOnClickListener(new View.OnClickListener() {
