@@ -9,6 +9,10 @@ public class ListViewItem {
     private int descStr ;
     private  String titleStr1;
 
+    public ListViewItem(){
+
+    }
+
     public ListViewItem(int icon, String title, String title2,int  desc){
         this.iconDrawable = icon;
         this.titleStr = title;

@@ -13,23 +13,39 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class AddMedicine extends AppCompatActivity {
 
 
-    DifferListAdapter adapter;
+    View view;
+
+    DifferListAdapter adapter; //같이 먹을약
+    RecyclerImageTextAdapter adapter2;
+
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+
+    private Frag1 frag1;
+
 
     ArrayList<DifferListItem> list1 = new ArrayList<>();  //같이 먹을 약 데이터를 저장
-
+  ArrayList<ListViewItem> list2 = new ArrayList<>(); //먹을약 리스트 추가
     EditText edt1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medicine);
 
+
+
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction(); //프레그멘트 교체가 일어날때
         edt1 = (EditText)findViewById(R.id.edt1);
         final ImageButton imageButton = (ImageButton)findViewById(R.id.delbutton);
         Button btnadd =(Button)findViewById(R.id.btnadd);
@@ -58,13 +74,33 @@ public class AddMedicine extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Frag1 frag1 = new Frag1();
+             Frag1 frag1 = new Frag1();
                 Bundle bundle = new Bundle();
                 bundle.putString("name", edt1.getText().toString());
 
                 frag1.setArguments(bundle);
 
+
+                Toast.makeText(getApplicationContext(),"저장",Toast.LENGTH_SHORT).show();
+
+
+
+
+            /* String name = edt1.getText().toString();
+             ListViewItem adddata = new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"3알",R.drawable.ic_person_black_24dp);
+
+
+                list2.add(adddata);
+
+           // addItem(R.drawable.ic_assignment_black_24dp,name,"2dkf",R.drawable.ic_assignment_black_24dp);
+
+            adapter2.notifyItemInserted(0);
+*/
+         /*   Intent intent = new Intent();
+            intent.putExtra("name",edt1.getText().toString());
+            setResult(RESULT_CORD,intent);
                 finish();
+*/
             }
         });
 
@@ -72,5 +108,16 @@ public class AddMedicine extends AppCompatActivity {
 
 
 
+
+
+    }
+
+    public void addItem (int icon, String title, String desc, int icon2){
+        ListViewItem item = new ListViewItem();
+
+        item.setIcon(icon);
+        item.setTitle1(desc);
+        item.setTitle(title);
+        item.setDesc(icon2);
     }
 }

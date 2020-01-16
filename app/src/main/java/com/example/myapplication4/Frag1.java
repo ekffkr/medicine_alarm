@@ -36,7 +36,7 @@ public class Frag1 extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerImageTextAdapter recyclerImageTextAdapter;
-    ArrayList<ListViewItem> list = new ArrayList<>();    // 먹을 약 알람 리스트 데이터 저장
+   public ArrayList<ListViewItem> list = new ArrayList<>();    // 먹을 약 알람 리스트 데이터 저장
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -44,41 +44,57 @@ public class Frag1 extends Fragment {
         showItemList();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Bundle extra = getArguments(); //값 받아오기
 
-
-       view = inflater.inflate(R.layout.frag1,container,false);
-        Context context = view.getContext();
-        list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
-        list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
-
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclelist);
-
-       recyclerImageTextAdapter = new RecyclerImageTextAdapter(context,list);
-       recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-       recyclerView.setAdapter(recyclerImageTextAdapter);
-
-        ImageButton imageButton = (ImageButton) view.findViewById(R.id.add);
-       TextView textView = (TextView) view.findViewById(R.id.calendar);
-
-        Bundle extra = this.getArguments(); //값 받아오기
 
         if(extra !=null){
             String name = extra.getString("name");
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
             Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
         }
+        // super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+
+       view = inflater.inflate(R.layout.frag1,container,false);
+        Context context = view.getContext();
+
+        Bundle extra = getArguments(); //값 받아오기
+
+        if(extra !=null){
+            String name = extra.getString("name");
+            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
+            Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
+        }
+      //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
+      //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
+
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclelist);
+
+       recyclerImageTextAdapter = new RecyclerImageTextAdapter(context,list);
+       recyclerView.setLayoutManager(new LinearLayoutManager(getActivity())); //레이아웃형식
+
+       recyclerView.setAdapter(recyclerImageTextAdapter);
+
+        ImageButton imageButton = (ImageButton) view.findViewById(R.id.add);
+       TextView textView = (TextView) view.findViewById(R.id.calendar);
+
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {         //먹을약 생성
                 Intent intent = new Intent(getActivity(),AddMedicine.class);  //frgment에서는 this를 쓸수 없기 때문에
                 //Acitivity의 참조를 얻어오기 위해서 getActivity()를사용한다.
-                startActivity(intent);
+                startActivityForResult(intent,0);
 
             }
         });

@@ -18,8 +18,14 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
     private ArrayList<ListViewItem> mData = null ;
     //데이터 리스트 객체 전달받음
+//Context context,
+    RecyclerImageTextAdapter(){
 
-    RecyclerImageTextAdapter(Context context, ArrayList<ListViewItem> list){
+    }
+    RecyclerImageTextAdapter(ArrayList<ListViewItem> list){
+        mData =list;
+    }
+    RecyclerImageTextAdapter( Context context,ArrayList<ListViewItem> list){
         mData = list;
     }
 
@@ -82,14 +88,14 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         }
     }
 
-   /* public void addItem (Drawable icon, String title, String desc, Drawable icon2){
+   /* public void addItem (int icon, String title, String desc, int icon2){
         ListViewItem item = new ListViewItem();
 
         item.setIcon(icon);
         item.setTitle1(desc);
         item.setTitle(title);
         item.setDesc(icon2);
-    }*/
-
+    }
+*/
 
 }
