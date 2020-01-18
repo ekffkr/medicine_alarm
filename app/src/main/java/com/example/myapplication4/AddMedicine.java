@@ -36,6 +36,11 @@ public class AddMedicine extends AppCompatActivity {
     EditText edt1;
 
 
+    public interface AddListener {
+        void onInputData (String med);
+    }
+
+    private  AddListener mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

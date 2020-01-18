@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +33,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
+
     private ListView listView;
     private BottomNavigationView bottomNavigationView;
     ArrayList<ListViewItem> mList = new ArrayList<ListViewItem>();
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private Frag1 frag1;
+
+    private TabFragment tabFragment; //tab을 구현하기위한 fragment
     private Frag2 frag2;
     Button button;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -46,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView imageView = (ImageView)findViewById(R.id.image2);
-
 
 
 
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        frag1 = new Frag1();
+        tabFragment = new TabFragment();
         frag2 = new Frag2();
 
 
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         ft = fm.beginTransaction(); //프레그멘트 교체가 일어날때
         switch (n){
             case 0:
-                ft.replace(R.id.frame,frag1);
+                ft.replace(R.id.frame,tabFragment);
                 ft.commit();
                 break;
             case 1:

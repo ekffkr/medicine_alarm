@@ -31,6 +31,7 @@ public class Frag2 extends Fragment {
 
         ImageButton nameChangebtn = (ImageButton) view.findViewById(R.id.usernamebtn);
          username = (TextView) view.findViewById(R.id.username);
+
         nameChangebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +50,8 @@ public class Frag2 extends Fragment {
         newFragment.show(getFragmentManager(),"dialog"); // dialog 라는 태그를 갖는 프레그먼트 출력
     }
 
+
+    //intent 받아옴
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -16,9 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.ListFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -28,15 +32,27 @@ public class Frag1 extends Fragment {
     private View view;
     private ListView listView;
 
+
+
+
     public Frag1(){
 
-
     }
+
+    public  static Frag1 newInstance(){
+        Frag1 frag1 = new Frag1();
+        return frag1;
+    }
+
+
 
 
     RecyclerView recyclerView;
     RecyclerImageTextAdapter recyclerImageTextAdapter;
    public ArrayList<ListViewItem> list = new ArrayList<>();    // 먹을 약 알람 리스트 데이터 저장
+
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -44,7 +60,7 @@ public class Frag1 extends Fragment {
         showItemList();
     }
 
-    @Override
+   /* @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         Bundle extra = getArguments(); //값 받아오기
 
@@ -55,7 +71,7 @@ public class Frag1 extends Fragment {
             Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
         }
         // super.onActivityResult(requestCode, resultCode, data);
-    }
+    }*/
 
     @Nullable
     @Override
@@ -65,6 +81,8 @@ public class Frag1 extends Fragment {
 
        view = inflater.inflate(R.layout.frag1,container,false);
         Context context = view.getContext();
+
+
 
         Bundle extra = getArguments(); //값 받아오기
 
@@ -91,8 +109,10 @@ public class Frag1 extends Fragment {
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {         //먹을약 생성
+            public void onClick(View v) {//먹을약 생성
+
                 Intent intent = new Intent(getActivity(),AddMedicine.class);  //frgment에서는 this를 쓸수 없기 때문에
+
                 //Acitivity의 참조를 얻어오기 위해서 getActivity()를사용한다.
                 startActivityForResult(intent,0);
 
