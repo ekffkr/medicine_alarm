@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +25,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Frag1 extends Fragment {
 
@@ -95,6 +98,8 @@ public class Frag1 extends Fragment {
       //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
 
 
+        CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView2); //달력
+        TextView MonthDay = (TextView) view.findViewById(R.id.calendar);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclelist);
 
        recyclerImageTextAdapter = new RecyclerImageTextAdapter(context,list);
@@ -105,6 +110,13 @@ public class Frag1 extends Fragment {
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.add);
        TextView textView = (TextView) view.findViewById(R.id.calendar);
 
+
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+        Date time = new Date(); //DATE 객체선언
+
+        String time1 = format1.format(time); //날짜 시간 출력
+
+        MonthDay.setText(time1); // 출력
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
