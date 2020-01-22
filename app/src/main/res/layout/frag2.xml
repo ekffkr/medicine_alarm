@@ -65,6 +65,30 @@
             android:text="공지사항"
 
             android:id="@+id/tt"></Button>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C3C3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="업데이트"
+
+            android:id="@+id/update"></Button>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C3C3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="문의사항"
+
+            android:id="@+id/mon"></Button>
+
+
 
     </LinearLayout>
 

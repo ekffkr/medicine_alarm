@@ -84,10 +84,10 @@ public class Frag1 extends Fragment {
 
 
 
-        Bundle extra = getArguments(); //값 받아오기
 
-        if(extra !=null){
-            String name = extra.getString("name");
+
+        if(getArguments() !=null){
+            String name = getArguments().getString("name");
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
             Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
         }

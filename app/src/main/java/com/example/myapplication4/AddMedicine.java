@@ -36,11 +36,11 @@ public class AddMedicine extends AppCompatActivity {
     EditText edt1;
 
 
-    public interface AddListener {
+   /* public interface AddListener {
         void onInputData (String med);
     }
-
-    private  AddListener mCallback;
+*/
+   // private  AddListener mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,8 @@ public class AddMedicine extends AppCompatActivity {
 
                 list1.add(new DifferListItem(name,R.drawable.ic_delete_black_24dp));
 
-                adapter = new DifferListAdapter(list1);
-                listView.setAdapter(adapter); //데이터와 view를 연결시켜줌
+                adapter = new DifferListAdapter(list1); //list1의 데이터를 adapter를 이용하여 view를 연결시켜줌
+                listView.setAdapter(adapter); //listview에 완성한 리사이클러뷰  추가
             }
         });
 
@@ -87,6 +87,7 @@ public class AddMedicine extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(),"저장",Toast.LENGTH_SHORT).show();
+                finish();
 
 
 
@@ -117,12 +118,12 @@ public class AddMedicine extends AppCompatActivity {
 
     }
 
-    public void addItem (int icon, String title, String desc, int icon2){
+   /* public void addItem (int icon, String title, String desc, int icon2){
         ListViewItem item = new ListViewItem();
 
         item.setIcon(icon);
         item.setTitle1(desc);
         item.setTitle(title);
         item.setDesc(icon2);
-    }
+    }*/
 }
