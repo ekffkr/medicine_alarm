@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -16,8 +17,22 @@ import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
 
-    private ArrayList<ListViewItem> mData = null ;
+
+    private ArrayList<ListViewItem> mData = new ArrayList<ListViewItem>() ;
+    private  Context context;
     //데이터 리스트 객체 전달받음
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int pos);
+    }
+    //리스너 객체 참조를 저장하는 변수
+    public OnItemClickListener mListener = null;
+
+    //OnItemClickListener 객체 참조를 어뎁터에 전달
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mListener = listener;
+    }
 //Context context,
     RecyclerImageTextAdapter(){
 
@@ -85,17 +100,26 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             title = itemView.findViewById(R.id.text1);
             desc = itemView.findViewById(R.id.text2);
             icon2 = itemView.findViewById(R.id.image2);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos =getAdapterPosition(); //아이템 위치
+                    if(pos != RecyclerView.NO_POSITION){
+                        ListViewItem item = mData.get(pos);
+                        // 데이터 리스트로부터 아이템 데이터 참조
+
+                        if(mListener != null) {
+                            mListener.onItemClick(v, pos);
+                        }
+
+                    }
+                }
+            });
         }
     }
 
-   /* public void addItem (int icon, String title, String desc, int icon2){
-        ListViewItem item = new ListViewItem();
 
-        item.setIcon(icon);
-        item.setTitle1(desc);
-        item.setTitle(title);
-        item.setDesc(icon2);
-    }
-*/
+
 
 }

@@ -79,6 +79,12 @@ public class AddMedicine extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(AddMedicine.this,MainActivity.class);
+                intent.putExtra("name1",edt1.getText().toString());
+                startActivity(intent);
+                //intent를 이용하여 데이터를 전달
+
+
              Frag1 frag1 = new Frag1();
                 Bundle bundle = new Bundle();
                 bundle.putString("name", edt1.getText().toString());
@@ -86,8 +92,12 @@ public class AddMedicine extends AppCompatActivity {
                 frag1.setArguments(bundle);
 
 
+
                 Toast.makeText(getApplicationContext(),"저장",Toast.LENGTH_SHORT).show();
                 finish();
+
+
+
 
 
 

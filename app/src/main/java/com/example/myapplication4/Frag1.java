@@ -34,6 +34,7 @@ public class Frag1 extends Fragment {
 
     private View view;
     private ListView listView;
+    String Medname;
 
 
 
@@ -50,6 +51,7 @@ public class Frag1 extends Fragment {
 
 
 
+
     RecyclerView recyclerView;
     RecyclerImageTextAdapter recyclerImageTextAdapter;
    public ArrayList<ListViewItem> list = new ArrayList<>();    // 먹을 약 알람 리스트 데이터 저장
@@ -60,10 +62,28 @@ public class Frag1 extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+     /*   Bundle extra = getArguments(); //값 받아오기
+
+      if(getArguments() !=null){
+            String name = getArguments().getString("name2");
+            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
+            Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
+        }
+*/
+        list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
+        //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
+
+        if(Medname != null){
+            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
+        }else{
+            Toast.makeText(getContext(),"없구나~~",Toast.LENGTH_SHORT).show();
+        }
+
+
         showItemList();
     }
-
-   /* @Override
+  /*  @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         Bundle extra = getArguments(); //값 받아오기
 
@@ -73,9 +93,9 @@ public class Frag1 extends Fragment {
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
             Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
         }
-        // super.onActivityResult(requestCode, resultCode, data);
-    }*/
-
+         super.onActivityResult(requestCode, resultCode, data);
+    }
+*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,13 +108,17 @@ public class Frag1 extends Fragment {
 
 
 
+      /*  Bundle extra = getArguments(); //값 받아오기
 
         if(getArguments() !=null){
-            String name = getArguments().getString("name");
+            String name = getArguments().getString("name2");
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"2알",R.drawable.ic_delete_black_24dp));
             Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
-        }
-      //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
+        }else {
+            Toast.makeText(getContext(),"하..1",Toast.LENGTH_SHORT).show();
+        }*/
+
+
       //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
 
 
@@ -107,6 +131,8 @@ public class Frag1 extends Fragment {
 
        recyclerView.setAdapter(recyclerImageTextAdapter);
 
+
+
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.add);
        TextView textView = (TextView) view.findViewById(R.id.calendar);
 
@@ -116,7 +142,16 @@ public class Frag1 extends Fragment {
 
         String time1 = format1.format(time); //날짜 시간 출력
 
-        MonthDay.setText(time1); // 출력
+        MonthDay.setText(time1); // 년 날짜 시간 출력
+
+        recyclerImageTextAdapter.setOnItemClickListener(new RecyclerImageTextAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                Intent intent = new Intent(getActivity(),AddMedicine.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +161,7 @@ public class Frag1 extends Fragment {
                 Intent intent = new Intent(getActivity(),AddMedicine.class);  //frgment에서는 this를 쓸수 없기 때문에
 
                 //Acitivity의 참조를 얻어오기 위해서 getActivity()를사용한다.
-                startActivityForResult(intent,0);
+                startActivity(intent);
 
             }
         });
@@ -161,5 +196,11 @@ public class Frag1 extends Fragment {
         recyclerImageTextAdapter = new RecyclerImageTextAdapter(getContext(),list);
         recyclerView.setAdapter(recyclerImageTextAdapter);
     }
+    public void Addmed(String name){
+        Medname = name;
+    }
+    /*public void addItem (int icon, String title, String desc, int icon2){
+        recyclerImageTextAdapter.addItem(icon,title,desc,icon2);
+    }*/
 }
 

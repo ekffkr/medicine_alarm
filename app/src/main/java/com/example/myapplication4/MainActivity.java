@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -34,16 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    RecyclerView recyclerView = null;
+
     private ListView listView;
+    Bundle extras;
     private BottomNavigationView bottomNavigationView;
     ArrayList<ListViewItem> mList = new ArrayList<ListViewItem>();
     private FragmentManager fm;
     private FragmentTransaction ft;
 
+    private RecyclerImageTextAdapter adapter;
     private TabFragment tabFragment; //tab을 구현하기위한 fragment
     private Frag2 frag2;
     Button button;
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,30 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView imageView = (ImageView)findViewById(R.id.image2);
+
+
+        extras = getIntent().getExtras();
+        if(extras != null){
+            String MedicineName = extras.getString("name1");
+            Toast.makeText(getApplicationContext(),MedicineName, Toast.LENGTH_SHORT).show();
+
+
+                    //getSupportFragmentMamager함수를 호출하여 FragmentManager의 참조를 획득후 Fragment의 참조를 가져옴
+           // Frag1 frag1 = new Frag1();
+            //frag1.Addmed(MedicineName);
+            Bundle bundle = new Bundle();
+            bundle.putString("name2",MedicineName);
+            Frag1 frag1 = new Frag1();
+            frag1.setArguments(bundle);
+
+            Frag1 frag11 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.frame);
+            frag1.Addmed(MedicineName);
+
+            Toast.makeText(getApplicationContext(),MedicineName, Toast.LENGTH_SHORT).show();
+
+
+        }
+
 
 
 
@@ -84,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private  void setFrag1(int n){
+    public  void setFrag1(int n){
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction(); //프레그멘트 교체가 일어날때
         switch (n){
@@ -98,6 +127,19 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    //추가할 아이템 데이터 넣기
+    public void addItem (int icon, String title, String desc, int icon2){
+        ListViewItem item = new ListViewItem();
+
+        item.setIcon(icon);
+        item.setTitle1(desc);
+        item.setTitle(title);
+        item.setDesc(icon2);
+
+        mList.add(item);
+    }
+
 
 
 
