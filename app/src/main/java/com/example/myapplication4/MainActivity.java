@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         extras = getIntent().getExtras();
-        if(extras != null){
+        if(extras != null) {
             String MedicineName = extras.getString("name1");
-            Toast.makeText(getApplicationContext(),MedicineName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), MedicineName, Toast.LENGTH_SHORT).show();
 
 
                     //getSupportFragmentMamager함수를 호출하여 FragmentManager의 참조를 획득후 Fragment의 참조를 가져옴
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             Frag1 frag1 = new Frag1();
             frag1.setArguments(bundle);
 
-            Frag1 frag11 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.frame);
+            Frag1 frag11 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.linearLayout);
             frag1.Addmed(MedicineName);
 
             Toast.makeText(getApplicationContext(),MedicineName, Toast.LENGTH_SHORT).show();

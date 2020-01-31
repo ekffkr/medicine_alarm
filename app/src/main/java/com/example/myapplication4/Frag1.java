@@ -3,7 +3,9 @@ package com.example.myapplication4;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -107,6 +109,11 @@ public class Frag1 extends Fragment {
 
 
 
+        if(Medname != null){
+            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
+        }else{
+            Toast.makeText(getContext(),"없구나~~",Toast.LENGTH_SHORT).show();
+        }
 
       /*  Bundle extra = getArguments(); //값 받아오기
 
@@ -166,7 +173,21 @@ public class Frag1 extends Fragment {
             }
         });
 
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                ListViewItem listViewItem =  list.get(position);
 
+                Intent intent = new Intent(getActivity(), AddMedicine.class);
+                startActivity(intent);
+                Toast.makeText(getContext(),"안돼",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
 
 
@@ -202,5 +223,53 @@ public class Frag1 extends Fragment {
     /*public void addItem (int icon, String title, String desc, int icon2){
         recyclerImageTextAdapter.addItem(icon,title,desc,icon2);
     }*/
+
+    public interface ClickListener{
+        void onClick(View view, int position);
+        void onLongClick(View view,int position);
+
+
+    }
+    public  static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
+
+        private GestureDetector gestureDetector;
+        private ClickListener clickListener;
+
+        public  RecyclerTouchListener(Context context,final RecyclerView recyclerView,final ClickListener clickListener){
+            this.clickListener=clickListener;
+            gestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
+
+                public  boolean onSingleTapup(MotionEvent e){
+                    return true;
+                }
+                public void onLongPress(MotionEvent e){
+                    View child = recyclerView.findChildViewUnder(e.getX(),e.getY());
+                    if(child != null && clickListener !=null){
+                        clickListener.onLongClick(child,recyclerView.getChildAdapterPosition(child));
+                    }
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            View child = rv.findChildViewUnder(e.getX(),e.getY());
+            if(child != null && clickListener != null && gestureDetector.onTouchEvent(e)){
+                clickListener.onClick(child,rv.getChildAdapterPosition(child));
+            }
+
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
 }
 
