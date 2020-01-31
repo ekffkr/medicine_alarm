@@ -173,18 +173,21 @@ public class Frag1 extends Fragment {
             }
         });
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new ClickListener() {
+        //리사이클러뷰 클릭 이벤트
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 ListViewItem listViewItem =  list.get(position);
 
-                Intent intent = new Intent(getActivity(), AddMedicine.class);
+               Intent intent = new Intent(getActivity(), AddMedicine.class);
                 startActivity(intent);
-                Toast.makeText(getContext(),"안돼",Toast.LENGTH_SHORT).show();
+             // Toast.makeText(getContext(),"클릭",Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
             public void onLongClick(View view, int position) {
+                Toast.makeText(getContext(),"롱클릭",Toast.LENGTH_SHORT).show();
 
             }
         }));
@@ -220,10 +223,12 @@ public class Frag1 extends Fragment {
     public void Addmed(String name){
         Medname = name;
     }
+
     /*public void addItem (int icon, String title, String desc, int icon2){
         recyclerImageTextAdapter.addItem(icon,title,desc,icon2);
     }*/
 
+    //리사이클러뷰 클릭 이벤트를 위한 인터페이스 및 클래스
     public interface ClickListener{
         void onClick(View view, int position);
         void onLongClick(View view,int position);
@@ -236,10 +241,10 @@ public class Frag1 extends Fragment {
         private ClickListener clickListener;
 
         public  RecyclerTouchListener(Context context,final RecyclerView recyclerView,final ClickListener clickListener){
-            this.clickListener=clickListener;
+            this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
 
-                public  boolean onSingleTapup(MotionEvent e){
+                public boolean onSingleTapUp(MotionEvent e){
                     return true;
                 }
                 public void onLongPress(MotionEvent e){
