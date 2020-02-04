@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
 
@@ -117,6 +118,15 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 }
             });
         }
+    }
+
+    public void addItem(String name){
+        ListViewItem item = new ListViewItem();
+
+        item.setTitle(name);
+      //  item.setname(name);
+
+        mData.add(item);
     }
 
 

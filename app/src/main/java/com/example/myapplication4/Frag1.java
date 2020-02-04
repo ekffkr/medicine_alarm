@@ -109,12 +109,12 @@ public class Frag1 extends Fragment {
 
 
 
-        if(Medname != null){
+       /* if(Medname != null){
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
         }else{
             Toast.makeText(getContext(),"없구나~~",Toast.LENGTH_SHORT).show();
         }
-
+*/
       /*  Bundle extra = getArguments(); //값 받아오기
 
         if(getArguments() !=null){
@@ -180,6 +180,7 @@ public class Frag1 extends Fragment {
                 ListViewItem listViewItem =  list.get(position);
 
                Intent intent = new Intent(getActivity(), AddMedicine.class);
+
                 startActivity(intent);
              // Toast.makeText(getContext(),"클릭",Toast.LENGTH_SHORT).show();
 
@@ -212,20 +213,28 @@ public class Frag1 extends Fragment {
         listViewAdapter.addItem(ContextCompat.getDrawable(getActivity(),R.drawable.ic_assignment_black_24dp),"영양제","매일하나",ContextCompat.getDrawable(getActivity(),R.drawable.ic_delete_black_24dp));
 */
 
+
         //super.onCreateView(inflater,container,savedInstanceState);
         return  view ;
     }
 
+    public void Addmed(String medname ){
+       Medname= medname;
+
+
+    }
     public void showItemList(){           //처음에만 제대로 나오고 그 후에는 제대로 나오지 않아서 추가
         recyclerImageTextAdapter = new RecyclerImageTextAdapter(getContext(),list);
         recyclerView.setAdapter(recyclerImageTextAdapter);
     }
-    public void Addmed(String name){
-        Medname = name;
+
+
+    public interface ModifyListner{
+        void onModifyListener(String name);
     }
 
-    /*public void addItem (int icon, String title, String desc, int icon2){
-        recyclerImageTextAdapter.addItem(icon,title,desc,icon2);
+  /*  public void addItem (int icon, String title, String desc, int icon2){
+        recyclerImageTextAdapter
     }*/
 
     //리사이클러뷰 클릭 이벤트를 위한 인터페이스 및 클래스

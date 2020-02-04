@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Frag1.ModifyListner {
 
 
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerImageTextAdapter adapter;
     private TabFragment tabFragment; //tab을 구현하기위한 fragment
     private Frag2 frag2;
+    String ModifyName;
     Button button;
 
     @Override
@@ -64,17 +65,20 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), MedicineName, Toast.LENGTH_SHORT).show();
 
 
+            Frag1 frag1 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.linearLayout);
+            frag1.Addmed(MedicineName);
+
                     //getSupportFragmentMamager함수를 호출하여 FragmentManager의 참조를 획득후 Fragment의 참조를 가져옴
            // Frag1 frag1 = new Frag1();
             //frag1.Addmed(MedicineName);
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putString("name2",MedicineName);
             Frag1 frag1 = new Frag1();
             frag1.setArguments(bundle);
 
             Frag1 frag11 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.linearLayout);
             frag1.Addmed(MedicineName);
-
+*/
             Toast.makeText(getApplicationContext(),MedicineName, Toast.LENGTH_SHORT).show();
 
 
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //추가할 아이템 데이터 넣기
-    public void addItem (int icon, String title, String desc, int icon2){
+    /*public void addItem (int icon, String title, String desc, int icon2){
         ListViewItem item = new ListViewItem();
 
         item.setIcon(icon);
@@ -138,11 +142,11 @@ public class MainActivity extends AppCompatActivity {
         item.setDesc(icon2);
 
         mList.add(item);
+    }*/
+
+
+    @Override
+    public void onModifyListener(String name) {
+        ModifyName = name;
     }
-
-
-
-
-
-
 }

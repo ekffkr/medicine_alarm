@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class AddMedicine extends AppCompatActivity {
 
@@ -59,6 +66,38 @@ public class AddMedicine extends AppCompatActivity {
        final ListView listView =(ListView) findViewById(R.id.diffList);
 
 
+       TimePicker timePicker = (TimePicker) findViewById(R.id.timepicker);
+        timePicker.setIs24HourView(true);// 모든 시간 보여줌
+
+        Button alarmAddBtn = (Button) findViewById(R.id.btnadd);
+        //맨 처음에는 현재시간을 보여주고 그 뒤에는 설정했던 값을 보여줌
+        SharedPreferences sharedPreferences = getSharedPreferences("daily alarm", MODE_PRIVATE);
+        long millis = sharedPreferences.getLong("nextNotifyTime", Calendar.getInstance().getTimeInMillis());
+
+
+        Calendar nextNotifyTime = new GregorianCalendar();
+        nextNotifyTime.setTimeInMillis(millis);
+
+        Date nextDate = nextNotifyTime.getTime();
+        String date_text = new SimpleDateFormat("yyy년 MM월 dd일 EE요일 a hh시 mm분", Locale.getDefault()).format(nextDate);
+
+        Toast.makeText(getApplicationContext(),"[처음실행시]다음 알람은" + date_text+"으로 알림이설정되었습니다.",Toast.LENGTH_SHORT).show();
+
+        Date currentTime = nextNotifyTime.getTime();
+        SimpleDateFormat HourFormat = new SimpleDateFormat("kk",Locale.getDefault());
+        SimpleDateFormat MinuteFormat = new SimpleDateFormat("mm", Locale.getDefault());
+
+        int pre_hour = Integer.parseInt(HourFormat.format(currentTime));
+        int pre_minute = Integer.parseInt(MinuteFormat.format(currentTime));
+
+        alarmAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
         togetheradd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {        //같이 먹을 약 추가
@@ -96,12 +135,6 @@ public class AddMedicine extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"저장",Toast.LENGTH_SHORT).show();
                 finish();
 
-
-
-
-
-
-
             /* String name = edt1.getText().toString();
              ListViewItem adddata = new ListViewItem(R.drawable.ic_assignment_black_24dp,name,"3알",R.drawable.ic_person_black_24dp);
 
@@ -119,6 +152,8 @@ public class AddMedicine extends AppCompatActivity {
 */
             }
         });
+
+
 
 
 

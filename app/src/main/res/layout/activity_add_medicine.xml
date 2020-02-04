@@ -98,6 +98,19 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="7dp"
         android:textStyle="bold"></TextView>
+
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/timepicker"
+        android:timePickerMode="spinner"></TimePicker>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="알람시간 추가하기"
+        android:id="@+id/timeAdd"></Button>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
