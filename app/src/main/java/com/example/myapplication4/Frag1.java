@@ -73,14 +73,6 @@ public class Frag1 extends Fragment {
             Toast.makeText(getContext(),"됫냐?",Toast.LENGTH_SHORT).show();
         }
 */
-        list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
-        //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
-
-        if(Medname != null){
-            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
-        }else{
-            Toast.makeText(getContext(),"없구나~~",Toast.LENGTH_SHORT).show();
-        }
 
 
         showItemList();
@@ -133,7 +125,17 @@ public class Frag1 extends Fragment {
         TextView MonthDay = (TextView) view.findViewById(R.id.calendar);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclelist);
 
-       recyclerImageTextAdapter = new RecyclerImageTextAdapter(context,list);
+        list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
+        list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
+        //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
+
+        if(Medname != null){
+            list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
+        }else{
+            Toast.makeText(getContext(),"없구나~~",Toast.LENGTH_SHORT).show();
+        }
+
+        recyclerImageTextAdapter = new RecyclerImageTextAdapter(context,list);
        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity())); //레이아웃형식
 
        recyclerView.setAdapter(recyclerImageTextAdapter);
@@ -219,7 +221,8 @@ public class Frag1 extends Fragment {
     }
 
     public void Addmed(String medname ){
-       Medname= medname;
+      // recyclerImageTextAdapter.addItem(medname);
+        Medname = medname;
 
 
     }

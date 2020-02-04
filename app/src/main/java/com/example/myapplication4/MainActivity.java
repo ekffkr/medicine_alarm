@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements Frag1.ModifyListn
             Toast.makeText(getApplicationContext(), MedicineName, Toast.LENGTH_SHORT).show();
 
 
-            Frag1 frag1 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.linearLayout);
-            frag1.Addmed(MedicineName);
+          //  Frag1 frag1 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.linearLayout);
+          //  frag1.Addmed(MedicineName);
 
                     //getSupportFragmentMamager함수를 호출하여 FragmentManager의 참조를 획득후 Fragment의 참조를 가져옴
            // Frag1 frag1 = new Frag1();
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements Frag1.ModifyListn
             Frag1 frag11 = (Frag1) getSupportFragmentManager().findFragmentById(R.id.linearLayout);
             frag1.Addmed(MedicineName);
 */
-            Toast.makeText(getApplicationContext(),MedicineName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"이름 전송", Toast.LENGTH_SHORT).show();
 
 
         }

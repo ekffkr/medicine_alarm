@@ -24,8 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/bottomNavi"
-        app:itemIconTint="#000000"
-        app:itemTextColor="#000000"
+        app:itemIconTint="#F7F6F6"
+        app:itemTextColor="#FAF8F8"
+        android:background="?attr/colorPrimary"
+        app:itemBackground="?attr/colorPrimary"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu"
