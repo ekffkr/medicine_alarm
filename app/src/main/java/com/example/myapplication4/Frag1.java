@@ -129,11 +129,11 @@ public class Frag1 extends Fragment {
         list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"타잉레놀","2알",R.drawable.ic_delete_black_24dp));
         //  list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,"ㅇㄴ녕","2알",R.drawable.ic_delete_black_24dp));
 
-        if(Medname != null){
+       /* if(Medname != null){
             list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,Medname,"2알",R.drawable.ic_delete_black_24dp));
         }else{
             Toast.makeText(getContext(),"없구나~~",Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
         recyclerImageTextAdapter = new RecyclerImageTextAdapter(context,list);
        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity())); //레이아웃형식
@@ -236,9 +236,12 @@ public class Frag1 extends Fragment {
         void onModifyListener(String name);
     }
 
-  /*  public void addItem (int icon, String title, String desc, int icon2){
-        recyclerImageTextAdapter
-    }*/
+   public void addItem ( String title){
+       list.add(new ListViewItem(R.drawable.ic_assignment_black_24dp,title,"2알",R.drawable.ic_delete_black_24dp));
+       recyclerImageTextAdapter = new RecyclerImageTextAdapter(getContext(),list);
+       recyclerView.setAdapter(recyclerImageTextAdapter);
+
+    }
 
     //리사이클러뷰 클릭 이벤트를 위한 인터페이스 및 클래스
     public interface ClickListener{

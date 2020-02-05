@@ -25,6 +25,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class AddMedicine extends AppCompatActivity {
+    //android:background="?attr/colorPrimary"
+    //app:itemBackground="?attr/colorPrimary"
 
 
     View view;

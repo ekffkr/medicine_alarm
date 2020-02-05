@@ -74,6 +74,10 @@ public class DifferListAdapter extends BaseAdapter {
 
     }
 
+    public void DelItem(int Positiion){
+        list.remove(Positiion);
+    }
+
 
 
     public void addItem(String name, int icon){
